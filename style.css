@@ -1,0 +1,216 @@
+.termekek td, .kosar_termekek td{
+    padding: 5px;
+    width: 33%;
+    background-color: rgba(192, 192, 192, 0.65);
+}
+
+.termek{
+    background-image: url(images/background3.png);
+    background-size: 100%;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kosar_termek{
+    background-image: url(images/background3.png);
+    background-size: 100%;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kosar_termek input{
+    font-size: 100%;
+    font-weight: bold;
+}
+
+.kosar_termekek table{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.termekek table{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.termekek, .kosar_termekek{
+    font-family: Arial;
+    margin-bottom: 60px;
+}
+
+.termekek img{
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kosar_termekek img{
+    width: 500px;
+    height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.termekek h1, .kosar_termekek h1{
+    text-align: center;
+    color:red;
+    text-shadow: 1px 1px black;
+    background-color:rgba(255, 255, 255, 0.5);
+}
+
+.termekek h3, .kosar_termekek h3{
+    text-align: center;
+    color: blue;
+    text-shadow: 1px 1px black;
+    font-size: 150%;
+    background-color:rgba(255, 255, 255, 0.5);
+}
+
+.leiras{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(192, 192, 192, 0.8);
+    text-align: center;
+    font-size: x-large;
+    color: aquamarine;
+    text-shadow: 1px 1px black;
+    margin-bottom: 25px;
+}
+
+.cim{
+    text-align: center;
+    font-family: Arial;
+    font-size: larger;
+    background-color: rgba(192, 192, 192, 0.65);
+    width:30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body{
+    background-image: url("images/background.png");
+}
+
+.kosar{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0 , 255, 0, 0.3);
+    
+}
+
+.kosar img{
+    width: 50px;
+}
+
+.kosarcim {
+    float:right;
+    margin-right: 15%;
+    margin-bottom: 25px;
+    background-color: rgba(192, 192, 192, 0.4);
+    width: 8%;
+    text-align: center;
+}
+
+.kosarcim a, .kosarcim a:visited{
+    text-decoration: none;
+    color: green;
+    text-shadow: 1px 1px black;
+    font-size: 120%;
+}
+
+.kosarcim a:hover, .kosarcim a:active{
+    color: darkgreen;
+}
+
+.kosarcim img:hover{
+    background-color: darkgreen;
+}
+
+.kosar:hover{
+    background-color: darkgreen;
+}
+
+.kosarhozzaadas{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.kosarhozzaadas input{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hozzaadasdb{
+    width: 100%;
+    color: blue;
+    text-shadow: 1px 1px black;
+    font-size: larger;
+}
+
+.kosar_urites{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+    color: blue;
+    width: 20%;
+    
+}
+
+.kosar_urites input{
+    width: 100%;
+    background-color: red;
+    font-size: 200%;
+}
+
+.vissza{
+    text-align: center;
+    background-color: green;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 130%;
+}
+
+.vissza a, .vissza a:visited{
+    text-decoration: none;
+    color:blue;
+    text-shadow: 1px 1px black;
+}
+
+.vissza:hover{
+    background-color: darkgreen;
+}
+
+.szuro{
+    float: left;
+    margin-left: 20%;
+    margin-bottom: 45px;
+    background-color: rgba(192, 192, 192, 0.4);
+    width: 8.5%;
+    text-align: center;
+}
+
+.szuro span{
+    font-size:200%;
+    color: greenyellow;
+    text-shadow: 1px 1px black;
+    display: inline-block;
+    margin-top: 15%;
+    text-align: left;
+}
+
+.szuro img{
+    width: 55px;
+    float:right;
+    margin: 10px;
+    background-color: green;
+    padding: 10px;
+}
