@@ -66,3 +66,6 @@ VALUES(NULL, "El Corvus koncert jegy", "Ez a jegy hitelesít, hogy beléphess El
 
 INSERT INTO `termekek`
 VALUES(NULL, "Super Mario Bros. Film jegy", "Ez a jegy hitelesít arra, hogy részt vegyél a Mario film premierén", 1500, "mario.jpg");
+
+INSERT INTO `termekek`
+VALUES(NULL, "Life 'n Poker bakelit lemez", "Meghallgathatod te is El Corvus Life 'n Poker című számát bakelit lemezen!", 9999, "poker.png");
