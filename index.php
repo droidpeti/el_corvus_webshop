@@ -79,7 +79,7 @@
                     }
                 if(isset($_POST[$row["id"]."hozzaadasdb"])){
                     $_SESSION["van_termek"] = true;
-                    if (!isset($_POST[$row["id"]."hozzaadasdb"])){
+                    if ($_POST[$row["id"]."hozzaadasdb"] >= 1){
                         $_SESSION["id".$row["id"]."db"] += $_POST[$row["id"]."hozzaadasdb"];
                     }
                     else{
