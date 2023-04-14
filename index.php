@@ -5,97 +5,72 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>El Corvus webshop</title>
+    <title>El Corvus webshop kosár</title>
 </head>
 <body>
     <?php
-    $servername="localhost";    
-    $username="root";
-    $password="";
-    $dbname="el_corvus_webshop";
+        $servername="localhost";    
+        $username="root";
+        $password="";
+        $dbname="el_corvus_webshop";
 
-    try{
-        $conn = new mysqli($servername, $username, $password, $dbname);
-    }
-    catch(mysqli_sql_exception $e) {
-        die("<div class='cim'><h1>Nem sikerült kapcsolódni! " . $e."</h1></div>");
-    }
+        try{
+            $conn = new mysqli($servername, $username, $password, $dbname);
+        }
+        catch(mysqli_sql_exception $e) {
+            die("<div class='cim'><h1>Nem sikerült kapcsolódni! " . $e."</h1></div>");
+        }
 
     ?>
     <div class="cim">
-        <h1>El Corvus webshop</h1>
-    </div>
-    <br>
-    <div class="szuro">
-        <span>Szűrő</span>
-        <img src="images/szuro.png">
-        <form method="post">
-            <input type="text" name="szures"></input>
-            <input type="submit" value="szűrés"></input>
-            <input type="submit" value="szűrő feltétel törlése" name ="szurotorles">
-        </form>
-    </div>
-    <div class="kosarcim">
-        <a href="kosar.php"><h3>Kosár tartalma</h3></a>
-        <a href="kosar.php">
-        <div class="kosar">
-            <img src="images/kosar.png">
-        </div>
-        </a>
+        <h1>Ez itt a kosarad!</h1>
     </div>
 
-    <div class="cim">
-        <h2>Termékek</h2>
+    <div class="vissza">
+        <a href="index.php"><h2>Vissza a főoldalra</h2></a>
     </div>
-    <div class="termekek">
+    <br>
+   
+
+    <div class="kosar_termekek">
     <?php
         session_start();
-        if(isset($_POST["szures"])){
-            $_SESSION["feltetel"] = $_POST["szures"];
-        }
-        if (isset($_POST["szurotorles"])){
-            unset($_SESSION["feltetel"]);
-        }
-        if (isset($_SESSION["feltetel"])){
-            $sql= "SELECT id, termek, leiras, ar, kep FROM termekek WHERE termek LIKE'%".$_SESSION["feltetel"]."%'";
-        }
-        else{
-            $sql = "SELECT id, termek, leiras, ar, kep FROM termekek";
-        }
-        $result = mysqli_query($conn, $sql);
-        $i = 1;
-    
-        if (mysqli_num_rows($result)> 0) {
-            echo "<table><tr>";
+        $sql = "SELECT id, termek, leiras, ar, kep FROM termekek";
+        $result = mysqli_query($conn, $sql);    
+        $szallitasi_koltseg = 1690;
+        $sum_ar =  $szallitasi_koltseg;
+        if (mysqli_num_rows($result)> 0 && isset($_SESSION["id1db"]) && $_SESSION["van_termek"]) {
+            echo "<table>";
             while($row = $result->fetch_assoc()) {
-                echo "<td><div class='termek'><h1>" . $row["termek"]. "</h1>" .  "<img src=" . "'images/termekek/" . $row["kep"] . "'><br><h3>ár: " . $row["ar"]. " Ft</h3></div><div class='leiras'>".$row["leiras"]."</div>";
-                
-                if(!isset($_SESSION["id".$row["id"]."db"])){
-                    $_SESSION["id".$row["id"]."db"] = 0;
-                }
-                echo "<div class='kosarhozzaadas'><form method='post'><div class='hozzaadasdb'><input type='number' step = '1' min='1' name='".$row["id"]."hozzaadasdb'></input>db</div><input type='submit' value='Hozzáadás a kosárhoz'></input> </form></div></td>";
-                if($i%3 == 0){
-                    echo "</tr><tr>";
+                if($_SESSION["id".$row["id"]."db"] > 0){
+                    echo "<tr><td><div class='kosar_termek'><h1>".$row["termek"]."</h1>";
+                    echo "<img src='images/termekek/".$row["kep"]."'>";
+                    echo "<h3>1db termék ára: ".$row["ar"]." Ft</h3><h3>".$_SESSION["id".$row["id"]."db"]." db <form method='post'><input type='submit' name='csokkentes".$row["id"]."' value='-1' style='background-color: red'>  <input type='submit' name='noveles".$row["id"]."'value='+1' style='background-color: green'></input></form>". "</h3> <h3>összes érték: ". $row["ar"]*$_SESSION["id".$row["id"]."db"]." Ft</h3></div></td></tr>";
+                    if(isset($_POST["csokkentes".$row["id"]])){
+                        $_SESSION["id".$row["id"]."db"]--;
+                        header("Refresh:0");
                     }
-                if(isset($_POST[$row["id"]."hozzaadasdb"])){
-                    $_SESSION["van_termek"] = true;
-                    if ($_POST[$row["id"]."hozzaadasdb"] >= 1){
-                        $_SESSION["id".$row["id"]."db"] += $_POST[$row["id"]."hozzaadasdb"];
-                    }
-                    else{
+                    if(isset($_POST["noveles".$row["id"]])){
                         $_SESSION["id".$row["id"]."db"]++;
+                        header("Refresh:0");
                     }
+                    $sum_ar += $row["ar"]*$_SESSION["id".$row["id"]."db"];
                 }
-                $i++;
             }
-            if($i%3 != 0){
-                echo "</tr>";
-            }
+            echo "<tr><td><h1>Szállítási költség: ".$szallitasi_koltseg." Ft</h1></td></tr>";
             echo "</table>";
-            $_SESSION["termekek"] = $i;
-        }
+            echo "<div class='cim'><h1> A végösszeg: ". (($sum_ar)-($szallitasi_koltseg)) . " Ft </h1></div>";
+            echo "<div class='cim'><h1> A végösszeg szállítással: ". $sum_ar . " Ft </h1></div>";
+            echo "<div class='kosar_urites'><form method='post'><input type='submit' value='Kosár kiűrítése' name='urites'></input></form></div>";
+            if(isset($_POST["urites"])){
+                session_unset();
+                header("Refresh:0");
+            }
+            }
+            else{
+                echo "<div class='cim'><h1>A kosarad üres!</h1></div>";
+            }
     ?>
     </div>
-    <br>
 </body>
 </html>
