@@ -34,7 +34,7 @@
 
     <div class="kosar_termekek">
     <?php
-    session_start();
+        session_start();
         $sql = "SELECT id, termek, leiras, ar, kep FROM termekek";
         $result = mysqli_query($conn, $sql);    
         $szallitasi_koltseg = 1690;
@@ -48,9 +48,6 @@
                     echo "<h3>1db termék ára: ".$row["ar"]." Ft</h3><h3>".$_SESSION["id".$row["id"]."db"]." db <form method='post'><input type='submit' name='csokkentes".$row["id"]."' value='-1' style='background-color: red'>  <input type='submit' name='noveles".$row["id"]."'value='+1' style='background-color: green'></input></form>". "</h3> <h3>összes érték: ". $row["ar"]*$_SESSION["id".$row["id"]."db"]." Ft</h3></div></td></tr>";
                     if(isset($_POST["csokkentes".$row["id"]])){
                         $_SESSION["id".$row["id"]."db"]--;
-                        if($_SESSION["id".$row["id"]."db"] == 0){
-                            $_SESSION["van_termek"] = false;
-                        }
                         header("Refresh:0");
                     }
                     if(isset($_POST["noveles".$row["id"]])){
