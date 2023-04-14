@@ -62,7 +62,7 @@
             }
             echo "<tr><td><h1>Szállítási költség: ".$szallitasi_koltseg." Ft</h1></td></tr>";
             echo "</table>";
-            echo "<div class='cim'><h1> A végösszeg: ". $sum_ar-$szallitasi_koltseg . " Ft </h1></div>";
+            echo "<div class='cim'><h1> A végösszeg: ". (($sum_ar)-($szallitasi_koltseg)) . " Ft </h1></div>";
             echo "<div class='cim'><h1> A végösszeg szállítással: ". $sum_ar . " Ft </h1></div>";
             echo "<div class='kosar_urites'><form method='post'><input type='submit' value='Kosár kiűrítése' name='urites'></input></form></div>";
             if(isset($_POST["urites"])){
